@@ -1,0 +1,53 @@
+services:
+  db:
+    image: mariadb:latest
+    container_name: bonus_db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpass
+      MARIADB_DATABASE: bonus_db
+      MARIADB_USER: bonus_user
+      MARIADB_PASSWORD: bonuspass
+      MARIADB_AUTO_UPGRADE: "1"
+      MARIADB_DISABLE_UPGRADE_BACKUP: "1"
+      MARIADB_INITDB_SKIP_TZINFO: "1"
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/00-init.sql:ro
+
+  backend:
+    build: ./backend
+    container_name: bonus_backend
+    restart: unless-stopped
+    environment:
+      DB_HOST: db
+      DB_USER: bonus_user
+      DB_PASS: bonuspass
+      DB_NAME: bonus_db
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build: ./frontend
+    container_name: bonus_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:5173"
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+      NODE_ENV: "development"
+      VITE_API_BASE_URL: "http://backend:5000"  
+    stdin_open: "true" 
+    tty: "true"  
+    working_dir: /app
+    command: npm run dev
+    volumes:
+      - ./frontend:/app             # bind-mount your source
+      - /app/node_modules           # keep node_modules inside container
+
+volumes:
+  db_data:
