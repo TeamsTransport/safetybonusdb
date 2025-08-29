@@ -1,0 +1,37 @@
+Safety Bonus DB/
+|--- backend/
+|    |--- routes/
+|    |    |--- drivers.js
+|    |    |--- safetyCategories.js
+|    |    |--- safetyEvents.js
+|    |    |--- trucks.js
+|    |--- db.js
+|    |--- Dockerfile
+|    |--- package.json
+|    |--- server.js
+|--- db/
+|    |--- init.sql
+|--- frontend/
+|    |--- public/
+|    |    |--- index.html
+|    |--- src/
+|    |    |--- components/
+|    |    |    |--- DriverForm.js
+|    |    |    |--- DriverList.js
+|    |    |    |--- SafetyEventForm.js
+|    |    |    |--- SafetyEventList.js
+|    |    |    |--- TruckForm.js
+|    |    |    |--- TruckList.js
+|    |    |    |--- FormRow.js
+|    |    |    |--- InlineField.js
+|    |    |--- App.js
+|    |    |--- index.css
+|    |    |--- index.js
+|    |    |--- postcss.config.js
+|    |    |--- tailwind.config.js
+|    |--- Dockerfile
+|    |--- package.json
+|    |--- package-lock.json
+|--- docker-compose.yml
+|--- package.json
+|--- vite.config.js

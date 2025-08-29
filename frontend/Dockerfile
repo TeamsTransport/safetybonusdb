@@ -1,14 +1,13 @@
-FROM node:current
+FROM node:24-alpine
 
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
-RUN npm install
+RUN npm ci
 
 COPY . .
 
 ENV CHOKIDAR_USEPOLLING=true
-ENV WATCHPACK_POLLING=true
 
-EXPOSE 3000
-CMD ["npm", "start"]
+EXPOSE 5173
+CMD ["npm", "run", "dev"]
