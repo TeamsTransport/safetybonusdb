@@ -7,6 +7,12 @@ import safetyEvents from './routes/safetyEvents.js';
 import safetyCategories from './routes/safetyCategories.js';
 
 const app = express();
+
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
+  next();
+});
+
 app.use(cors());
 app.use(express.json());
 
