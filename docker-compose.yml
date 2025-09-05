@@ -40,11 +40,11 @@ services:
     environment:
       CHOKIDAR_USEPOLLING: "true"
       NODE_ENV: "development"
-      VITE_API_BASE_URL: "http://backend:5000"  
+      VITE_API_BASE_URL: "http://localhost:5000"  
     stdin_open: "true" 
     tty: "true"  
     working_dir: /app
-    command: npm run dev
+    command: npm run dev -- --host 0.0.0.0 --port 5173 --strictPort
     volumes:
       - ./frontend:/app             # bind-mount your source
       - /app/node_modules           # keep node_modules inside container
