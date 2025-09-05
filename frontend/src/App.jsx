@@ -5,13 +5,9 @@ import SafetyEventList from './components/SafetyEventList';
 
 export default function App() {
   return (
-    <div style={{ padding: 20, maxWidth: 1200, margin: '0 auto' }}>
-      <h1>Safety Bonus Dashboard</h1>
-      <DriverList />
-      <hr/>
-      <TruckList />
-      <hr/>
-      <SafetyEventList />
+    <div className="p-4 text-center text-xl text-blue-600">
+      Hello from Tailwind + React + Vite!
     </div>
   );
 }
+
