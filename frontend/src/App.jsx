@@ -1,7 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css' // ← This must exist and import Tailwind
+import './index.css'
 
 export default function App() {
   return (
