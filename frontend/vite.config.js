@@ -8,14 +8,17 @@ export default defineConfig({
     tailwind(),
   ],
   server: {
-    host: '0.0.0.0',
+    host: '0.0.0.0', // Bind to all interfaces
     port: 5173,
+    strictPort: true, // Don't try other ports if 5173 is busy
+    hmr: {
+      clientPort: 5173, // Important for Docker
+    },
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'http://backend:5000', // Use Docker service name
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, '/api') // Explicit rewrite
       },
     },
     watch: {
