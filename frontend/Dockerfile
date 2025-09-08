@@ -7,8 +7,6 @@ RUN npm ci
 
 COPY . .
 
-RUN npm install -g tailwindcss
-
 ENV CHOKIDAR_USEPOLLING=true
 
 EXPOSE 5173
